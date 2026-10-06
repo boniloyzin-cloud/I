@@ -1,0 +1,22 @@
+-- 1. Fetch raw script content
+local rawUrl = "https://raw.githubusercontent.com/boniloyzin-cloud/Yochill/refs/heads/main/raw%20(4).txt"
+local success, scriptContent = pcall(function()
+    return game:HttpGet(rawUrl)
+end)
+
+if success and scriptContent then
+    -- 2. Replace all XOCU names with DAVI
+    local modifiedScript = scriptContent
+        :gsub("XOCU", "DAVI")
+        :gsub("xocu", "DAVI")
+
+    -- 3. Execute modified script
+    local executeFunc, err = loadstring(modifiedScript)
+    if executeFunc then
+        executeFunc()
+    else
+        loadstring(scriptContent)()
+    end
+else
+    warn("Failed to fetch script from URL")
+end
